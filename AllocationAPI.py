@@ -35,6 +35,7 @@ class MemoryAllocator:
     def allocate_memory(self, block_start, length, process):
         # block_start+length+1
         for block_id in range(block_start, block_start+length):
+            print(block_start, length, block_id)
             assert self.__memory_blocks[block_id] is None, 'tend to allocate occupied blocks'
             self.__memory_blocks[block_id] = process
             process.set_memory(block_start, length)

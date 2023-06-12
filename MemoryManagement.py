@@ -33,6 +33,32 @@ class MemoryManager:
         # Memory blocks will be automatically reclaimed according to 
         # the definition in the process objects.
 
+        mem=[]
+        loc=[]
+        for ind in range(len(memory_view)):
+            # 判断是否有连续的空闲内存块
+            if memory_view[ind] is None:
+                length=1
+                for j in range(ind+1,len(memory_view)):
+                    if memory_view[j] is None:
+                        length+=1
+                    if memory_view[j] is not None:
+                        break
+                if length>=request_size:
+                    loc.append(ind)
+                    mem.append(length)
+        if len(mem)==0:
+            # raise AssertionError('allocation failed')
+            block_start=0
+            print('allocation failed')
+        else:
+            
+            block_start=loc[mem.index(min(mem))]
+
+        
+        
+
+        
         self.allocator.allocate_memory(block_start, request_size, process)
 
 

@@ -17,10 +17,10 @@ else:
 display_content = []
 
 def display_update():
-    _clear()
+    # _clear()
     for c in display_content:
         print(c)
-    time.sleep(0.01)
+    # time.sleep(0.01)
 
 def memory_view(allocator):
     view = allocator.memory_view()
