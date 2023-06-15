@@ -2,6 +2,7 @@ import time
 import TaskDefine
 from AllocationAPI import MemoryAllocator
 from MemoryManagement import MemoryManager
+# from MemoryManagementCopy import MemoryManager
 
 import os
 import platform
@@ -16,16 +17,18 @@ else:
 
 display_content = []
 
+
 def display_update():
     # _clear()
     for c in display_content:
         print(c)
     # time.sleep(0.01)
 
+
 def memory_view(allocator):
     view = allocator.memory_view()
     s = ['']
-    for i,c in enumerate(view):
+    for i, c in enumerate(view):
         s.append('X' if c else ' ')
         if i % 32 == 31:
             s.append('\n')
@@ -56,9 +59,10 @@ def test(tasks):
             display_content[-1] = f"""
 ================ Task {task_num+1} ================
 \nAllocation Failed:     {error_count} \nScore for this task:   {max(10-error_count, 0)}\n
-"""+ memory_view(allocator)
+""" + memory_view(allocator)
             display_update()
         time.sleep(1)
+
 
 if __name__ == "__main__":
     test(TaskDefine.Tasks)
